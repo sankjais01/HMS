@@ -1,4 +1,4 @@
-package sanity;
+package smoke;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -13,7 +13,8 @@ import main.BrowserFactory;
 import pom.LoginPage;
 import utils.ExcelUtils;
 
-public class LoginTestCase {
+public class LoginTest {
+
 	WebDriver driver;
 	boolean flag = true;
 	ExcelUtils excelvalidusers = new ExcelUtils((System.getProperty("user.dir") + "/resources/utils/User.xlsx"),
@@ -90,25 +91,12 @@ public class LoginTestCase {
 
 	}
 
-	@Test(priority = 3)
-	void invalidLogin() throws InterruptedException {
-		for (int r = 1; r < invaliduserdata.length; r++) {
-			System.out.println("Invalid test scenario " + r);
-			Thread.sleep(2000);
-			asert.assertFalse(loginpage.invalidLogin(invaliduserdata[r][0], invaliduserdata[r][1]),
-					"User Login successful with invalid data credentials");
-			
-
-		}
-
-	}
-
 	@AfterSuite
 	void destroy() {
 		driver.close();
 
-		System.out.println(
-				"total time for testing " + this.getClass() + (starttime-System.currentTimeMillis())/6000 +" Seconds");
+		System.out.println("total time for testing " + this.getClass() + (starttime - System.currentTimeMillis()) / 6000
+				+ " Seconds");
 	}
 
 }

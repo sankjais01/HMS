@@ -5,7 +5,10 @@
     <classes>
       <class name="sanity.LoginTestCase">
         <methods>
+          <include name="invalidLogin"/>
           <include name="testdata"/>
+          <include name="destroy"/>
+          <include name="initBrowser"/>
         </methods>
       </class> <!-- sanity.LoginTestCase -->
     </classes>
