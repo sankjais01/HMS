@@ -69,13 +69,10 @@ public class PrivatePractitionerTestCase {
 		practitionerpage = new PrivatePractitionerPage(driver);
 	}
 
-	/*
-	 * @Test(priority = 1) void validLogin() throws InterruptedException {
-	 * Assert.assertTrue(loginpage.validLogin(validuserdata[1][0],
-	 * validuserdata[1][1]), "User Failed to Login with valid credentials");
-	 * 
-	 * }
-	 */
+	@Test(priority = 1)
+	void visiblityof_privatepractitioner_components() {
+		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
+	}
 
 	@AfterSuite
 	void destroy() {

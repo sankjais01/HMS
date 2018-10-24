@@ -10,6 +10,7 @@ import locators.Locators;
 public class PrivatePractitionerPage {
 
 	WebDriver driver;
+	boolean flag = true;
 
 	@FindBy(xpath = Locators.TITLE_DROPDOWNLIST_XPATH)
 	WebElement title_dropdown;
@@ -103,10 +104,142 @@ public class PrivatePractitionerPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	/*
-	 * public boolean visiblityOfComponents() { if (username_textfield.isDisplayed()
-	 * && password_textfield.isDisplayed() && login_button.isDisplayed() &&
-	 * forgotpassword_link.isDisplayed()) { return true; } else { return false; } }
-	 */
+	public boolean visiblityOfComponents() {
+
+		if (!title_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("title for MR, MRs prefix not displayed");
+		}
+		if (!firstname_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("firstname textfield not displayed");
+		}
+		if (!middlename_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("middle name textfield not displayed");
+		}
+		if (!phone_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("phone number type dropdown not displayed");
+		}
+		if (!contact_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("contact textfield not displayed");
+		}
+
+		if (!add_contact_button.isDisplayed()) {
+			flag = false;
+			System.out.println("add contact button not displayed");
+		}
+
+		if (!addressLine1_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("address line 1 textfield not displayed");
+		}
+
+		if (!addressLine2_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("address line 2 textfield not displayed");
+		}
+		if (!state_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("state dropdown list not displayed");
+		}
+
+		if (!city_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("city dropdown list not displayed");
+		}
+
+		if (!pincode_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("pincode textfield not displayed");
+		}
+
+		if (!country_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("country textfield not displayed");
+		}
+		if (!dob_calendar.isDisplayed()) {
+			flag = false;
+			System.out.println("DOB calendar not displayed");
+		}
+
+		if (!practice_years_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("year of practice textfield not displayed");
+		}
+
+		if (!email_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("email textfield not displayed");
+		}
+		if (!profile_image_button.isDisplayed()) {
+			flag = false;
+			System.out.println("profile image browser button not displayed");
+		}
+
+		if (!entity_logo_button.isDisplayed()) {
+			flag = false;
+			System.out.println("entity image browser button not displayed");
+		}
+		if (!specality_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("speciality dropdown list not displayed");
+		}
+
+		if (!college_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("college textfield not displayed");
+		}
+
+		if (!degree_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("degree textfield not displayed");
+		}
+
+		if (!passing_year_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("passing year textfield not displayed");
+		}
+
+		if (!addspecality_button.isDisplayed()) {
+			flag = false;
+			System.out.println("add specality button not displayed");
+		}
+
+		if (!licensestatus_dropdown.isDisplayed()) {
+			flag = false;
+			System.out.println("license status dropdownlist not displayed");
+		}
+
+		if (!businesslicence_number_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("business license number textfield not displayed");
+		}
+
+		if (!licenceissuerbody_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("license body textfield not displayed");
+		}
+
+		if (!licenceissueryear_textfield.isDisplayed()) {
+			flag = false;
+			System.out.println("license issuer year textfield not displayed");
+		}
+
+		if (!cancel_button.isDisplayed()) {
+			flag = false;
+			System.out.println("cancel button not displayed");
+		}
+
+		if (!createentity_button.isDisplayed()) {
+			flag = false;
+			System.out.println("create entity button not displayed");
+		}
+
+		return flag;
+
+	}
 
 }
