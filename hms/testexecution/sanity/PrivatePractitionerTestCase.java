@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,21 +13,22 @@ import org.testng.asserts.SoftAssert;
 import locators.Locators;
 import main.BrowserFactory;
 import pom.LoginPage;
+import pom.PrivatePractitionerPage;
 import utils.ExcelUtils;
 
-public class LoginTestCase {
+public class PrivatePractitionerTestCase {
+
 	WebDriver driver;
 	boolean flag = true;
 	ExcelUtils excelvalidusers = new ExcelUtils((System.getProperty("user.dir") + "/resources/utils/User.xlsx"),
 			"validusers");
-	ExcelUtils excelinvalidusers = new ExcelUtils((System.getProperty("user.dir") + "/resources/utils/User.xlsx"),
-			"invalidusers");
-	String validuserdata[][], invaliduserdata[][];
+	String validuserdata[][];
 	LoginPage loginpage;
+	PrivatePractitionerPage practitionerpage;
 	SoftAssert asert = new SoftAssert();
 	long starttime, endtime;
 
-	@BeforeTest
+	@BeforeSuite
 	public void testdata() throws Exception {
 		// for getting valid data into string array
 		int cols = excelvalidusers.excel_get_cols();
@@ -38,33 +40,12 @@ public class LoginTestCase {
 		for (int r = 1; r < rows; r++) {
 			for (int c = 0; c < cols; c++) {
 				validuserdata[r][c] = excelvalidusers.getCellDataAsString(r, c);
-				// System.out.print(validuserdata[r][c] + " ");
 			}
-			// System.out.println();
-		}
-
-		// System.out.println("----------------------------------------------------");
-
-		// for getting invalid data into string array
-
-		cols = excelinvalidusers.excel_get_cols();
-		rows = excelinvalidusers.excel_get_rows();
-
-		// System.out.println("Invalid data cols " + cols);
-		// System.out.println("Invalid data rows" + rows);
-		invaliduserdata = new String[rows][cols];
-
-		for (int r = 1; r < rows; r++) {
-			for (int c = 0; c < cols; c++) {
-				invaliduserdata[r][c] = excelinvalidusers.getCellDataAsString(r, c);
-				// System.out.print(invaliduserdata[r][c] + " ");
-			}
-			// System.out.println();
 		}
 
 	}
 
-	@BeforeSuite()
+	@BeforeTest
 	void initBrowser() throws InterruptedException {
 		driver = BrowserFactory.createDriver("chrome");
 		if (driver == null) {
@@ -79,34 +60,22 @@ public class LoginTestCase {
 
 	}
 
-	@Test(priority = 1)
-	void testVisiblityofAllComponets() {
-		asert.assertTrue(loginpage.visiblityOfComponents(), "fail to load components");
-	}
-
-	@Test(priority = 2)
-	void validLogin() throws InterruptedException {
+	@BeforeClass
+	void navigatesTo_privatePractitioner() throws InterruptedException {
 		Assert.assertTrue(loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]),
 				"User Failed to Login with valid credentials");
-		driver.findElement(By.xpath(Locators.PROFILE_DROPDOWNMENU_XPATH)).click();
-		driver.findElement(By.xpath(Locators.LOGOUT_BUTTON_XPATH)).click();
-
+		driver.findElement(By.xpath(Locators.CREATEN_ENTITY_WIDGET_XPATH)).click();
+		driver.findElement(By.xpath(Locators.PRACTITIONER_FLIPBOX_XPATH)).click();
+		practitionerpage = new PrivatePractitionerPage(driver);
 	}
 
-	@Test(priority = 3)
-	void invalidLogin() throws InterruptedException {
-		// driver.get(Locators.LOGINPAGE_URL);
-		for (int r = 1; r < invaliduserdata.length; r++) {
-			System.out.println("Invalid test scenario " + r + " with username-  " + invaliduserdata[r][0]
-					+ " password - " + invaliduserdata[r][1]);
-			Thread.sleep(2000);
-			asert.assertFalse(loginpage.invalidLogin(invaliduserdata[r][0], invaliduserdata[r][1]),
-					"User Login successful with invalid data credentials" + "username-  " + invaliduserdata[r][0]
-							+ " password - " + invaliduserdata[r][1]);
-
-		}
-
-	}
+	/*
+	 * @Test(priority = 1) void validLogin() throws InterruptedException {
+	 * Assert.assertTrue(loginpage.validLogin(validuserdata[1][0],
+	 * validuserdata[1][1]), "User Failed to Login with valid credentials");
+	 * 
+	 * }
+	 */
 
 	@AfterSuite
 	void destroy() {

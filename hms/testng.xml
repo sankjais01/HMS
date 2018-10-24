@@ -3,7 +3,6 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="pom.testdemo"/>
       <class name="sanity.LoginTestCase"/>
     </classes>
   </test> <!-- Test -->

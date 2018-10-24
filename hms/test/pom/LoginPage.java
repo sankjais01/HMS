@@ -63,8 +63,9 @@ public class LoginPage {
 		}
 		if (driver.getCurrentUrl().equalsIgnoreCase(Locators.LANDINGPAGE_URL)) {
 			Thread.sleep(1000);
-			menu.click();
-			logout_button.click();
+			System.out.println("user login sucessfuly");
+			// menu.click();
+			// logout_button.click();
 			return true;
 		} else {
 			return false;
@@ -75,6 +76,7 @@ public class LoginPage {
 	public boolean invalidLogin(String username, String password) {
 
 		try {
+
 			username_textfield.clear();
 			username_textfield.sendKeys(username);
 			password_textfield.clear();

@@ -2,32 +2,32 @@
 <testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="14404" started-at="2018-10-23T11:35:56Z" finished-at="2018-10-23T11:36:11Z">
+  <suite name="Default suite" duration-ms="14132" started-at="2018-10-24T10:05:35Z" finished-at="2018-10-24T10:05:49Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="14404" started-at="2018-10-23T11:35:56Z" finished-at="2018-10-23T11:36:11Z">
+    <test name="Default test" duration-ms="14132" started-at="2018-10-24T10:05:35Z" finished-at="2018-10-24T10:05:49Z">
       <class name="sanity.LoginTestCase">
-        <test-method status="PASS" signature="initBrowser()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="initBrowser" is-config="true" duration-ms="8390" started-at="2018-10-23T17:05:48Z" finished-at="2018-10-23T17:05:56Z">
+        <test-method status="PASS" signature="initBrowser()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="initBrowser" is-config="true" duration-ms="8491" started-at="2018-10-24T15:35:26Z" finished-at="2018-10-24T15:35:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initBrowser -->
-        <test-method status="PASS" signature="testdata()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="testdata" is-config="true" duration-ms="21" started-at="2018-10-23T17:05:56Z" finished-at="2018-10-23T17:05:56Z">
+        <test-method status="PASS" signature="testdata()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="testdata" is-config="true" duration-ms="5" started-at="2018-10-24T15:35:35Z" finished-at="2018-10-24T15:35:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testdata -->
-        <test-method status="PASS" signature="testVisiblityofAllComponets()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="testVisiblityofAllComponets" duration-ms="142" started-at="2018-10-23T17:05:56Z" finished-at="2018-10-23T17:05:56Z">
+        <test-method status="PASS" signature="testVisiblityofAllComponets()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="testVisiblityofAllComponets" duration-ms="123" started-at="2018-10-24T15:35:35Z" finished-at="2018-10-24T15:35:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testVisiblityofAllComponets -->
-        <test-method status="PASS" signature="validLogin()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="validLogin" duration-ms="3562" started-at="2018-10-23T17:05:56Z" finished-at="2018-10-23T17:06:00Z">
+        <test-method status="PASS" signature="validLogin()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="validLogin" duration-ms="3407" started-at="2018-10-24T15:35:35Z" finished-at="2018-10-24T15:35:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validLogin -->
-        <test-method status="PASS" signature="invalidLogin()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="invalidLogin" duration-ms="10652" started-at="2018-10-23T17:06:00Z" finished-at="2018-10-23T17:06:11Z">
+        <test-method status="PASS" signature="invalidLogin()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="invalidLogin" duration-ms="10576" started-at="2018-10-24T15:35:38Z" finished-at="2018-10-24T15:35:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidLogin -->
-        <test-method status="PASS" signature="destroy()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="destroy" is-config="true" duration-ms="2321" started-at="2018-10-23T17:06:11Z" finished-at="2018-10-23T17:06:13Z">
+        <test-method status="PASS" signature="destroy()[pri:0, instance:sanity.LoginTestCase@35ef1869]" name="destroy" is-config="true" duration-ms="2315" started-at="2018-10-24T15:35:49Z" finished-at="2018-10-24T15:35:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- destroy -->
