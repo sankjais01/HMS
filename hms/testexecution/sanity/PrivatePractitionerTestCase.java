@@ -1,5 +1,7 @@
 package sanity;
 
+import javax.xml.xpath.XPath;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -65,8 +67,12 @@ public class PrivatePractitionerTestCase {
 		Assert.assertTrue(loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]),
 				"User Failed to Login with valid credentials");
 		driver.findElement(By.xpath(Locators.CREATEN_ENTITY_WIDGET_XPATH)).click();
+		Thread.sleep(1000);
 		driver.findElement(By.xpath(Locators.PRACTITIONER_FLIPBOX_XPATH)).click();
+		Thread.sleep(1000);
+	//	driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]")));
 		practitionerpage = new PrivatePractitionerPage(driver);
+		//driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
 	}
 
 	@Test(priority = 1)

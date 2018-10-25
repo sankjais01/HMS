@@ -4,6 +4,7 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="sanity.LoginTestCase"/>
+      <class name="sanity.PrivatePractitionerTestCase"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
