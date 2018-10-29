@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="sanity.LoginTestCase">
+      <class name="sanity.ForgotPasswordTestCase">
         <methods>
-          <include name="invalidLogin"/>
-          <include name="testdata"/>
           <include name="destroy"/>
           <include name="initBrowser"/>
+          <include name="testdata"/>
+          <include name="validforgotpassword_test"/>
         </methods>
-      </class> <!-- sanity.LoginTestCase -->
+      </class> <!-- sanity.ForgotPasswordTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

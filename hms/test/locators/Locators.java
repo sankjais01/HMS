@@ -4,13 +4,26 @@ public class Locators {
 
 	public static final String LANDINGPAGE_URL = "http://49.248.255.50:8090/HMS_UI/#/landingPage";
 	public static final String LOGINPAGE_URL = "http://49.248.255.50:8090/HMS_UI/#/";
+	public static final String FORGOTPAGE_URL = "http://49.248.255.50:8090/HMS_UI/#/sendMail";
 
-	// home page object Xpath
+	// Login page objects xpaths
+
 	public static final String USERNAME_TEXTFIELD_XPATH = "//input[@id='email']";
 	public static final String PASSWORD_TEXTFIELD_XPATH = "//input[@id='password']";
 	public static final String LOGIN_BUTTON_XPATH = "//button[@type='submit']";
 	public static final String FORGOTPASSWORD_LINK_XPATH = "//a[contains(text(),'Forgot Password?')]";
 	public static final String INVALID_LOGIN_MESSAGE_XPATH = "//span[contains(text(),'Invalid username or password')]";
+
+	// forgot password page object Xpath
+
+	public static final String FORGOT_EMAIL_TEXTFIELD_XPATH = "//input[@id='email']";
+	public static final String FORGOT_LOGIN_BUTTON_XPATH = "//button[@type='submit']";
+	public static final String FORGOT_GOBACK_LINK_XPATH = ".//*[@id='app']//div[2]//div[2]/div[2]/div/a/span";
+	public static final String FORGOT_VALID_EMAIL_MESSAGE_XPATH = "//p[contains(text(),'Password reset instructions sent to your mail.')]";
+	public static final String FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH = "// span[contains(text(),'Email has already been sent to your email address.')]";
+	public static final String FORGOT_INVALID_EMAIL_MESSAGE_XPATH = "//span[contains(text(),'User is not available')]";
+
+	// home page object Xpath
 	public static final String SLIDER_MENU_BUTTON_XPATH = ".//*[@id='home']/span";
 	public static final String SLIDER_ENTITY_DROPDOWN_XPATH = ".//*[@id='treeViewClass']/i";
 	public static final String SLIDER_ENTITY_CREATENEWENTITY_BUTTON_XPATH = ".//*[@id='app']//div[1]//ul[1]/li[2]//li[1]/a";

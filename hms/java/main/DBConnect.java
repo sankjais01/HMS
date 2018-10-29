@@ -6,10 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import utils.ExcelUtils;
 
-public class TestDB {
+public class DBConnect {
 	static String database_details[][];
 	static ExcelUtils database_excel_details = new ExcelUtils(
 			(System.getProperty("user.dir") + "/resources/utils/User.xlsx"), "database");
@@ -21,6 +22,7 @@ public class TestDB {
 	String driver_type = database_details[1][5];
 	Connection con = null;
 	PreparedStatement prepare_stmts = null;
+	public List<String> forgot_password_email;
 
 	// "com.mysql.jdbc.Driver" depricated one
 
@@ -60,8 +62,8 @@ public class TestDB {
 		// createstatements = con.createStatement();
 	}
 
-	public static void main(String args[]) {
-		TestDB db = new TestDB();
+	public static DBConnect readEmail_of_forgorpasswords() {
+		DBConnect db = new DBConnect();
 		db.con = db.getConnection();
 		if (db.con == null) {
 			System.out.println("fail to connected to database");
@@ -71,16 +73,18 @@ public class TestDB {
 		try {
 			db.prepare_stmts = db.con.prepareStatement("select * from forgot_password_detail;");
 			ResultSet rs = db.prepare_stmts.executeQuery();
+			
 			while (rs.next()) {
-				System.out.print(rs.getString("forgot_password_link") + "  ----    ");
-				System.out.print(rs.getString("user_id"));
-				System.out.println();
 
+				System.out.print(rs.getString("user_id"));
+				db.forgot_password_email.add(rs.getString("user_id"));
+				System.out.println("test success");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return db;
 
 	}
 
