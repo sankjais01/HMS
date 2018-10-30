@@ -12,6 +12,7 @@ import main.DBConnect;
 public class ForgotPage {
 
 	WebDriver driver;
+	boolean emailflag = false;
 
 	@FindBy(xpath = Locators.FORGOT_EMAIL_TEXTFIELD_XPATH)
 	WebElement forgot_email_textfield;
@@ -47,30 +48,36 @@ public class ForgotPage {
 			forgot_email_textfield.clear();
 			forgot_email_textfield.sendKeys(email);
 			forgot_login_button.click();
-			Thread.sleep(500);
+			Thread.sleep(700);
+			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH)).isDisplayed()) {
+				System.out.println("Reset password link already sent sucessfuly");
+				System.out.println("verifying in database, please wait...........");
+				System.out.println();
+
+				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
+					if (s.equalsIgnoreCase(email)) {
+						emailflag = true;
+					}
+				}
+
+				return emailflag;
+			}
+			Thread.sleep(3000);
 			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
 				System.out.println("Reset password link sent sucessfuly");
 				System.out.println("verifying in database, please wait...........");
 
 				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
-					System.out.println(s);
+					if (s.equalsIgnoreCase(email)) {
+						emailflag = true;
+					}
 				}
 
-				return true;
-			}  if (driver.findElement(By.xpath(Locators.FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH))
-					.isDisplayed()) {
-				System.out.println("Reset password link already sent sucessfuly");
-				System.out.println("verifying in database, please wait...........");
-
-				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
-					System.out.println(s);
-				}
-
-				return true;
+				return emailflag;
 			}
 
 			else {
-				return false;
+				return emailflag;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

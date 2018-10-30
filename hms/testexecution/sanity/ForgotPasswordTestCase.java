@@ -92,7 +92,7 @@ public class ForgotPasswordTestCase {
 	@Test(priority = 1)
 	void validforgotpassword_test() throws InterruptedException {
 
-		Assert.assertTrue(forgotpage.validforgot(validuserdata[1][0]), "User Failed to Login with valid credentials");
+		Assert.assertTrue(forgotpage.validforgot(validuserdata[1][0]), "fail to test forgot password page");
 
 	}
 

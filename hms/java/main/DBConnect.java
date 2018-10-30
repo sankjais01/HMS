@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import utils.ExcelUtils;
@@ -62,9 +63,10 @@ public class DBConnect {
 		// createstatements = con.createStatement();
 	}
 
-	public static DBConnect readEmail_of_forgorpasswords() {
+	public static DBConnect readEmail_of_forgorpasswords() throws SQLException {
 		DBConnect db = new DBConnect();
 		db.con = db.getConnection();
+		db.forgot_password_email = new ArrayList<String>();
 		if (db.con == null) {
 			System.out.println("fail to connected to database");
 			System.exit(1);
@@ -73,19 +75,21 @@ public class DBConnect {
 		try {
 			db.prepare_stmts = db.con.prepareStatement("select * from forgot_password_detail;");
 			ResultSet rs = db.prepare_stmts.executeQuery();
-			
+
 			while (rs.next()) {
 
-				System.out.print(rs.getString("user_id"));
+				// System.out.print(rs.getString("user_id"));
 				db.forgot_password_email.add(rs.getString("user_id"));
-				System.out.println("test success");
+				// System.out.println(" test success");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			db.con.close();
+			System.out.println("Disconnecting database");
 		}
 		return db;
-
 	}
 
 }
