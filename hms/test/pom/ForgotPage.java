@@ -1,5 +1,7 @@
 package pom;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,42 +44,58 @@ public class ForgotPage {
 		}
 	}
 
-	public boolean validforgot(String email) throws InterruptedException {
+	public boolean forgotPassword(String email) throws InterruptedException {
 
 		try {
 			forgot_email_textfield.clear();
 			forgot_email_textfield.sendKeys(email);
-			forgot_login_button.click();
-			Thread.sleep(700);
-			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH)).isDisplayed()) {
-				System.out.println("Reset password link already sent sucessfuly");
-				System.out.println("verifying in database, please wait...........");
-				System.out.println();
-
-				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
-					if (s.equalsIgnoreCase(email)) {
-						emailflag = true;
-					}
-				}
-
-				return emailflag;
-			}
-			Thread.sleep(3000);
-			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
-				System.out.println("Reset password link sent sucessfuly");
-				System.out.println("verifying in database, please wait...........");
-
-				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
-					if (s.equalsIgnoreCase(email)) {
-						emailflag = true;
-					}
-				}
-
-				return emailflag;
+			if (!forgot_login_button.isEnabled()) {
+				System.out.println("Invalid data entered - button not clickable");
+				return false;
 			}
 
+			/*
+			 * if (driver.findElement(By.xpath(Locators.
+			 * FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH)).isDisplayed()) {
+			 * System.out.println("Reset password link already sent sucessfuly");
+			 * System.out.println("verifying in database, please wait...........");
+			 * System.out.println();
+			 * 
+			 * for (String s :
+			 * DBConnect.readEmail_of_forgorpasswords().forgot_password_email) { if
+			 * (s.equalsIgnoreCase(email)) { emailflag = true; } }
+			 * 
+			 * return emailflag; } Thread.sleep(3000);
+			 */
 			else {
-				return emailflag;
+				forgot_login_button.click();
+				Thread.sleep(500);
+				try {
+					if (driver.findElement(By.xpath(Locators.INVALID_USERNOTFOUND_MESSAGE_XPATH)).isDisplayed()) {
+						System.out.println("User not avaliable");
+						return false;
+					}
+				} catch (NoSuchElementException e) {
+					// TODO Auto-generated catch block
+					System.err.println("User not found xpath is not found exception");
+				}
+				if (driver.findElement(By.xpath(Locators.FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
+					System.out.println("Reset password link sent sucessfuly");
+					driver.navigate().refresh();
+					driver.get(Locators.LOGINPAGE_URL);
+					driver.get(Locators.FORGOTPAGE_URL);
+					System.out.println("verifying in database, please wait...........");
+					for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
+						if (s.equalsIgnoreCase(email)) {
+							emailflag = true;
+							System.out.println("Reset link found in DB");
+						}
+					}
+					return emailflag;
+				} else {
+					System.out.println("Reset link not found in DB");
+					return emailflag;
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

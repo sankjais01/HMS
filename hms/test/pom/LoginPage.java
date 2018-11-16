@@ -55,7 +55,7 @@ public class LoginPage {
 			password_textfield.clear();
 			password_textfield.sendKeys(password);
 			login_button.click();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.err.println(e);
@@ -88,6 +88,7 @@ public class LoginPage {
 				Thread.sleep(500);
 
 			} else {
+				System.out.println("-----Button is disabled-----");
 				return false;
 
 			}

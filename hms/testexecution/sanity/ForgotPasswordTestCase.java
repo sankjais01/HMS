@@ -89,11 +89,28 @@ public class ForgotPasswordTestCase {
 	 * "fail to load components"); }
 	 */
 
+	/*
+	 * @Test(priority = 1) void validforgotpassword_test() throws
+	 * InterruptedException {
+	 * 
+	 * Assert.assertTrue(forgotpage.validforgot(validuserdata[1][0]),
+	 * "fail to test forgot password page");
+	 * 
+	 * }
+	 */
+
 	@Test(priority = 1)
-	void validforgotpassword_test() throws InterruptedException {
+	void invalidforgotpassword_test() throws InterruptedException {
 
-		Assert.assertTrue(forgotpage.validforgot(validuserdata[1][0]), "fail to test forgot password page");
+		System.out.println(invaliduserdata.length);
+		for (int r = 1; r < invaliduserdata.length; r++) {
+			System.out
+					.println("Invalid forgotpassword test scenario " + r + " with username-  " + invaliduserdata[r][0]);
+			Thread.sleep(2000);
+			asert.assertFalse(forgotpage.forgotPassword(invaliduserdata[r][0]),
+					"fail to test invalid forgot password page");
 
+		}
 	}
 
 	@AfterSuite

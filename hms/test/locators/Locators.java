@@ -13,12 +13,15 @@ public class Locators {
 	public static final String LOGIN_BUTTON_XPATH = "//button[@type='submit']";
 	public static final String FORGOTPASSWORD_LINK_XPATH = "//a[contains(text(),'Forgot Password?')]";
 	public static final String INVALID_LOGIN_MESSAGE_XPATH = "//span[contains(text(),'Invalid username or password')]";
+	public static final String INVALID_USERNOTFOUND_MESSAGE_XPATH = "//span[contains(text(),'User is not available')]";
+
 
 	// forgot password page object Xpath
 
 	public static final String FORGOT_EMAIL_TEXTFIELD_XPATH = "//input[@id='email']";
 	public static final String FORGOT_LOGIN_BUTTON_XPATH = "//button[@type='submit']";
 	public static final String FORGOT_GOBACK_LINK_XPATH = ".//*[@id='app']//div[2]//div[2]/div[2]/div/a/span";
+	public static final String FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH = "//p[contains(text(),'Password reset instructions sent to your mail.')]";
 	public static final String FORGOT_VALID_EMAIL_MESSAGE_XPATH = "//p[contains(text(),'Password reset instructions sent to your mail.')]";
 	public static final String FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH = "// span[contains(text(),'Email has already been sent to your email address.')]";
 	public static final String FORGOT_INVALID_EMAIL_MESSAGE_XPATH = "//span[contains(text(),'User is not available')]";
@@ -46,7 +49,7 @@ public class Locators {
 	public static final String MIDDLENAME_TEXTFIELD_XPATH = "//input[@id='middleName']";
 	public static final String LASTNAME_TEXTFIELD_XPATH = "//input[@id='lastName']";
 	public static final String TITLE_DROPDOWNLIST_XPATH = "//*[@id='person']";
-	public static final String PHONETYPE_DROPDOWNLIST_XPATH = "//select[@id='typeTel_2']";
+	public static final String PHONETYPE_DROPDOWNLIST_XPATH = "//select[@id='typeTel']";
 	public static final String CONTACT_TEXTFIELD_XPATH = "//input[@id='numberTel']";
 	public static final String ADD_CONTACT_BUTTON_XPATH = "//button[@id='addPhone']";
 	public static final String ADDRESSLINE1_TEXTFIELD_XPATH = "//input[@id='addressLine1']";
