@@ -49,6 +49,7 @@ public class PrivatePractitionerTestCase {
 
 	@BeforeTest
 	void initBrowser() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver = BrowserFactory.createDriver("chrome");
 		if (driver == null) {
 			flag = false;
@@ -59,7 +60,7 @@ public class PrivatePractitionerTestCase {
 		driver.get(Locators.LOGINPAGE_URL);
 		loginpage = new LoginPage(driver);
 		Thread.sleep(3000);
-
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 	@BeforeClass
@@ -70,22 +71,26 @@ public class PrivatePractitionerTestCase {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath(Locators.PRACTITIONER_FLIPBOX_XPATH)).click();
 		Thread.sleep(1000);
-	//	driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]")));
+		// driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]")));
 		practitionerpage = new PrivatePractitionerPage(driver);
-		//driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
+		// driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
 	}
 
 	@Test(priority = 1)
 	void visiblityof_privatepractitioner_components() {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("checking visiblity of all componets of  " + this.getClass());
 		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 	@AfterSuite
 	void destroy() {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver.close();
-
 		System.out.println("total time for testing " + this.getClass() + (starttime - System.currentTimeMillis()) / 6000
 				+ " Seconds");
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 }

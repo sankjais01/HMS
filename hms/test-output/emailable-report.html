@@ -31,25 +31,22 @@ div.shootout {padding:2em;border:3px #4854A8 solid}
 <body>
 <table cellspacing="0" cellpadding="0" class="result">
 <tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
-<tr><td style="text-align:left;padding-right:2em">Test</td><td class="numi">6</td><td class="numi">6</td><td class="numi">0</td><td class="numi">0</td><td class="numi">30.2 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+<tr><td style="text-align:left;padding-right:2em">Default test</td><td class="numi">0</td><td class="numi">0</td><td class="numi">0</td><td class="numi_attn">1</td><td class="numi">14.0 seconds</td><td class="numi"></td><td class="numi"></td></tr>
 </table>
 <table cellspacing="0" cellpadding="0" class="passed" id="summary">
 <tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Start</th><th>Time<br/>(ms)</th></tr>
-<tr><th colspan="4">Test &#8212; passed</th></tr>
-<tr class="passedodd"><td rowspan="3">sanity.LoginTestCase</td><td><a href="#m1"><b>test_VisiblityofAllComponets</b>  </a></td><td class="numi">1</td><td>1542624005009</td><td class="numi">170</td></tr><tr class="passedodd"><td><a href="#m2"><b>test_validLogin</b>  </a></td><td class="numi">1</td><td>1542624005181</td><td class="numi">2680</td></tr><tr class="passedodd"><td><a href="#m3"><b>test_invalidLogin</b>  </a></td><td class="numi">1</td><td>1542624007862</td><td class="numi">12519</td></tr>
-<tr class="passedeven"><td rowspan="3">sanity.ForgotPasswordTestCase</td><td><a href="#m4"><b>test_VisiblityofAllComponets</b>  </a></td><td class="numi">1</td><td>1542624020384</td><td class="numi">84</td></tr><tr class="passedeven"><td><a href="#m5"><b>test_validforgotpassword</b>  </a></td><td class="numi">1</td><td>1542624020469</td><td class="numi">1090</td></tr><tr class="passedeven"><td><a href="#m6"><b>test_invalidforgotpassword</b>  </a></td><td class="numi">1</td><td>1542624021561</td><td class="numi">13616</td></tr>
+<tr><th colspan="4">Default test &#8212; failed</th></tr>
+<tr class="failedodd"><td rowspan="1">sanity.PrivatePractitionerTestCase</td><td><a href="#m1"><b>visiblityof_privatepractitioner_components</b>  </a></td><td class="numi">1</td><td>1542631695818</td><td class="numi">347</td></tr>
 </table>
-<h1>Test</h1>
-<h2 id="m1">sanity.LoginTestCase:test_VisiblityofAllComponets</h2>
-<p class="totop"><a href="#summary">back to summary</a></p>
-<h2 id="m2">sanity.LoginTestCase:test_validLogin</h2>
-<p class="totop"><a href="#summary">back to summary</a></p>
-<h2 id="m3">sanity.ForgotPasswordTestCase:test_validforgotpassword</h2>
-<p class="totop"><a href="#summary">back to summary</a></p>
-<h2 id="m4">sanity.LoginTestCase:test_invalidLogin</h2>
-<p class="totop"><a href="#summary">back to summary</a></p>
-<h2 id="m5">sanity.ForgotPasswordTestCase:test_VisiblityofAllComponets</h2>
-<p class="totop"><a href="#summary">back to summary</a></p>
-<h2 id="m6">sanity.ForgotPasswordTestCase:test_invalidforgotpassword</h2>
+<h1>Default test</h1>
+<h2 id="m1">sanity.PrivatePractitionerTestCase:visiblityof_privatepractitioner_components</h2>
+<div style="padding-left:3em">
+<p>All component not dispalyed expected [true] but found [false]</p>
+org.testng.Assert.fail(Assert.java:94)
+<br/>at org.testng.Assert.failNotEquals(Assert.java:494)
+<br/>at org.testng.Assert.assertTrue(Assert.java:42)
+<br/>at sanity.PrivatePractitionerTestCase.visiblityof_privatepractitioner_components(PrivatePractitionerTestCase.java:83)
+<br/>25 lines not shown
+</div>
 <p class="totop"><a href="#summary">back to summary</a></p>
 </body></html>
