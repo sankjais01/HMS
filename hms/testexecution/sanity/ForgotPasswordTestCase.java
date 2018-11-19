@@ -68,6 +68,7 @@ public class ForgotPasswordTestCase {
 
 	@BeforeSuite()
 	void initBrowser() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver = BrowserFactory.createDriver("chrome");
 		if (driver == null) {
 			flag = false;
@@ -80,45 +81,51 @@ public class ForgotPasswordTestCase {
 		driver.findElement(By.xpath(Locators.FORGOTPASSWORD_LINK_XPATH)).click();
 		forgotpage = new ForgotPage(driver);
 		Thread.sleep(1000);
+		System.out.println("----------------------------------------------------------------------------------");
 
 	}
 
-	/*
-	 * @Test(priority = 1) void testVisiblityofAllComponets() {
-	 * asert.assertTrue(forgotpage.visiblityOfComponents(),
-	 * "fail to load components"); }
-	 */
-
-	/*
-	 * @Test(priority = 1) void validforgotpassword_test() throws
-	 * InterruptedException {
-	 * 
-	 * Assert.assertTrue(forgotpage.validforgot(validuserdata[1][0]),
-	 * "fail to test forgot password page");
-	 * 
-	 * }
-	 */
-
 	@Test(priority = 1)
-	void invalidforgotpassword_test() throws InterruptedException {
+	void test_VisiblityofAllComponets() {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("checking visiblity of all componets of  " + this.getClass());
+		asert.assertTrue(forgotpage.visiblityOfComponents(), "fail to load components");
+		System.out.println("----------------------------------------------------------------------------------");
+	}
 
-		System.out.println(invaliduserdata.length);
+	@Test(priority = 2)
+	void test_validforgotpassword() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("Valid forgot password test scenario 1 with username " + validuserdata[1][0]);
+		Assert.assertTrue(forgotpage.valid_forgotPassword(validuserdata[1][0]), "fail to test forgot password page");
+		System.out.println("----------------------------------------------------------------------------------");
+
+	}
+
+	@Test(priority = 3)
+	void test_invalidforgotpassword() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
+
+		// System.out.println("test data for invalid emails"+ invaliduserdata.length-1);
 		for (int r = 1; r < invaliduserdata.length; r++) {
 			System.out
 					.println("Invalid forgotpassword test scenario " + r + " with username-  " + invaliduserdata[r][0]);
 			Thread.sleep(2000);
-			asert.assertFalse(forgotpage.forgotPassword(invaliduserdata[r][0]),
+			asert.assertFalse(forgotpage.invalid_forgotPassword(invaliduserdata[r][0]),
 					"fail to test invalid forgot password page");
+			System.out.println("----------------------------------------------------------------------------------");
 
 		}
 	}
 
 	@AfterSuite
 	void destroy() {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver.close();
-
 		System.out.println("total time for testing " + this.getClass() + (starttime - System.currentTimeMillis()) / 6000
 				+ " Seconds");
+		System.out.println("----------------------------------------------------------------------------------");
+
 	}
 
 }

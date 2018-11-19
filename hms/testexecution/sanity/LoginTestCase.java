@@ -66,6 +66,7 @@ public class LoginTestCase {
 
 	@BeforeSuite()
 	void initBrowser() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver = BrowserFactory.createDriver("chrome");
 		if (driver == null) {
 			flag = false;
@@ -76,26 +77,35 @@ public class LoginTestCase {
 		driver.get(Locators.LOGINPAGE_URL);
 		loginpage = new LoginPage(driver);
 		Thread.sleep(3000);
+		System.out.println("----------------------------------------------------------------------------------");
 
 	}
 
 	@Test(priority = 1)
-	void testVisiblityofAllComponets() {
+	void test_VisiblityofAllComponets() {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("checking visiblity of all componets of " + this.getClass());
 		asert.assertTrue(loginpage.visiblityOfComponents(), "fail to load components");
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 	@Test(priority = 2)
-	void validLogin() throws InterruptedException {
+	void test_validLogin() throws InterruptedException {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("Testing valid login testcase");
 		Assert.assertTrue(loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]),
 				"User Failed to Login with valid credentials");
 		driver.findElement(By.xpath(Locators.PROFILE_DROPDOWNMENU_XPATH)).click();
 		driver.findElement(By.xpath(Locators.LOGOUT_BUTTON_XPATH)).click();
+		System.out.println("----------------------------------------------------------------------------------");
 
 	}
 
 	@Test(priority = 3)
-	void invalidLogin() throws InterruptedException {
+	void test_invalidLogin() throws InterruptedException {
 		// driver.get(Locators.LOGINPAGE_URL);
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("Testing Invalid login testcase");
 		for (int r = 1; r < invaliduserdata.length; r++) {
 			System.out.println("Invalid test scenario " + r + " with username-  " + invaliduserdata[r][0]
 					+ " password - " + invaliduserdata[r][1]);
@@ -105,15 +115,16 @@ public class LoginTestCase {
 							+ " password - " + invaliduserdata[r][1]);
 
 		}
-
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 	@AfterSuite
 	void destroy() {
+		System.out.println("----------------------------------------------------------------------------------");
 		driver.close();
-
 		System.out.println("total time for testing " + this.getClass() + (starttime - System.currentTimeMillis()) / 6000
 				+ " Seconds");
+		System.out.println("----------------------------------------------------------------------------------");
 	}
 
 }

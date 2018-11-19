@@ -3,6 +3,7 @@ package pom;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,66 +45,100 @@ public class ForgotPage {
 		}
 	}
 
-	public boolean forgotPassword(String email) throws InterruptedException {
-
+	public boolean valid_forgotPassword(String email) throws InterruptedException {
+		forgot_email_textfield.clear();
+		forgot_email_textfield.sendKeys(email);
 		try {
-			forgot_email_textfield.clear();
-			forgot_email_textfield.sendKeys(email);
 			if (!forgot_login_button.isEnabled()) {
-				System.out.println("Invalid data entered - button not clickable");
+				System.out.println("Invalid data entered, entered valid registered email id - button not clickable");
 				return false;
 			}
+		} catch (Exception e) {
+			System.out.println("Exception occur while checking button control");
+			return false;
+		}
+		forgot_login_button.click();
+		Thread.sleep(500);
 
-			/*
-			 * if (driver.findElement(By.xpath(Locators.
-			 * FORGOT_VALID_EMAIL_MESSAGE_ALREADYSENT_XPATH)).isDisplayed()) {
-			 * System.out.println("Reset password link already sent sucessfuly");
-			 * System.out.println("verifying in database, please wait...........");
-			 * System.out.println();
-			 * 
-			 * for (String s :
-			 * DBConnect.readEmail_of_forgorpasswords().forgot_password_email) { if
-			 * (s.equalsIgnoreCase(email)) { emailflag = true; } }
-			 * 
-			 * return emailflag; } Thread.sleep(3000);
-			 */
-			else {
-				forgot_login_button.click();
-				Thread.sleep(500);
-				try {
-					if (driver.findElement(By.xpath(Locators.INVALID_USERNOTFOUND_MESSAGE_XPATH)).isDisplayed()) {
-						System.out.println("User not avaliable");
-						return false;
+		try {
+			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
+				System.out.println("Reset password link sent sucessfuly");
+				System.out.println("verifying in database, please wait...........");
+				for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
+					System.out.println("emails in db are as - " + s);
+					if (s.equalsIgnoreCase(email)) {
+						emailflag = true;
+						System.out.println("Reset link found in DB");
 					}
-				} catch (NoSuchElementException e) {
-					// TODO Auto-generated catch block
-					System.err.println("User not found xpath is not found exception");
 				}
+				return emailflag;
+			} else {
+				System.out.println("Reset link not found in DB");
+				return emailflag;
+			}
+		} catch (Exception e) {
+			System.out.println("Exception occur for valid registered user");
+			return false;
+		}
+	}
+
+	public boolean invalid_forgotPassword(String email) throws InterruptedException {
+
+		try {
+
+			driver.get(Locators.LOGINPAGE_URL);
+			driver.get(Locators.FORGOTPAGE_URL);
+			forgot_email_textfield.clear();
+			forgot_email_textfield.sendKeys(email);
+			// for wrong email format
+			try {
+				if (!forgot_login_button.isEnabled()) {
+					System.out.println("Invalid email format entered - button not clickable");
+					return false;
+				}
+			} catch (Exception e) {
+				System.out.println("Exception occur while checking button control");
+				return true;
+			}
+			forgot_login_button.click();
+			Thread.sleep(500);
+			try {
+				if (driver.findElement(By.xpath(Locators.INVALID_USERNOTFOUND_MESSAGE_XPATH)).isDisplayed()) {
+					System.out.println("User not registered with us");
+					return false;
+				}
+			} catch (Exception e) {
+				System.out.println("Exception occur to find message User is not available.");
+				// return true;
+			}
+			try {
 				if (driver.findElement(By.xpath(Locators.FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
 					System.out.println("Reset password link sent sucessfuly");
-					driver.navigate().refresh();
-					driver.get(Locators.LOGINPAGE_URL);
-					driver.get(Locators.FORGOTPAGE_URL);
 					System.out.println("verifying in database, please wait...........");
 					for (String s : DBConnect.readEmail_of_forgorpasswords().forgot_password_email) {
 						if (s.equalsIgnoreCase(email)) {
-							emailflag = true;
 							System.out.println("Reset link found in DB");
+							return true;
 						}
 					}
-					return emailflag;
 				} else {
 					System.out.println("Reset link not found in DB");
-					return emailflag;
+					return false;
 				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Exception occur for registered user");
+				return true;
+				// System.err.println(e);
+				// e.printStackTrace();
+
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.err.println(e);
-			// e.printStackTrace();
-			return false;
+			e.printStackTrace();
+			System.out.println("Exception in main try block");
+			return true;
 		}
-
+		return emailflag;
 	}
-
 }

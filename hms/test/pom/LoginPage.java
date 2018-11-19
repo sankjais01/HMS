@@ -83,12 +83,10 @@ public class LoginPage {
 			password_textfield.sendKeys(password);
 			// System.out.println(login_button.getAttribute("disabled"));
 			if (login_button.isEnabled()) {
-
 				login_button.click();
 				Thread.sleep(500);
-
 			} else {
-				System.out.println("-----Button is disabled-----");
+				System.out.println("Invalid email format or password entered - button not clickable");
 				return false;
 
 			}

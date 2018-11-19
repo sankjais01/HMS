@@ -7,8 +7,8 @@
         <methods>
           <include name="destroy"/>
           <include name="initBrowser"/>
+          <include name="invalidforgotpassword_test"/>
           <include name="testdata"/>
-          <include name="validforgotpassword_test"/>
         </methods>
       </class> <!-- sanity.ForgotPasswordTestCase -->
     </classes>

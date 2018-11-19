@@ -27,7 +27,7 @@ public class DBConnect {
 
 	// "com.mysql.jdbc.Driver" depricated one
 
-	// static block
+	// static block for setting db connection details
 	static {
 		try {
 			int cols = database_excel_details.excel_get_cols();
@@ -48,6 +48,7 @@ public class DBConnect {
 
 	}
 
+	//creating db connection
 	public Connection getConnection() {
 		try {
 			con = DriverManager.getConnection(connectionURL, dbusername, dbpassword);
