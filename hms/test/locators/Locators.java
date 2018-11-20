@@ -45,26 +45,27 @@ public class Locators {
 
 	// private practitioner
 
+	public static final String TITLE_DROPDOWNLIST_XPATH = "//*[@id='person']";
 	public static final String FIRSTNAME_TEXTFIELD_XPATH = "//input[@id='firstName']";
 	public static final String MIDDLENAME_TEXTFIELD_XPATH = "//input[@id='middleName']";
 	public static final String LASTNAME_TEXTFIELD_XPATH = "//input[@id='lastName']";
-	public static final String TITLE_DROPDOWNLIST_XPATH = "//*[@id='person']";
 	public static final String PHONETYPE_DROPDOWNLIST_XPATH = "//select[@id='typeTel']";
 	public static final String CONTACT_TEXTFIELD_XPATH = "//input[@id='numberTel']";
-	public static final String ADD_CONTACT_BUTTON_XPATH = "//button[@id='addPhone']";
+	public static final String ADD_CONTACT_BUTTON_XPATH = "//*[@id='telPrimary']/ng-form/div[5]";
 	public static final String ADDRESSLINE1_TEXTFIELD_XPATH = "//input[@id='addressLine1']";
 	public static final String ADDRESSLINE2_TEXTFIELD_XPATH = "//input[@id='addressLine2']";
 	public static final String STATE_DROPDOWNLIST_XPATH = "//*[@id='selectOptions']";
 	public static final String CITY_DROPDOWNLIST_XPATH = "//*[@name='city']";
-	public static final String PINCODE_TEXTFIELD_XPATH = "//input[@id='zipCode']";
+	public static final String PINCODE_DROPDOWNLIST_XPATH = "//select[@id='selectPin']";
+	public static final String PINCODE_TEXTFIELD_XPATH = "//input[@name='otherzipCode']";
 	public static final String COUNTRY_TEXTFIELD_XPATH = "//input[@id='country']";
 	public static final String DOB_CALENDAR_XPATH = "//input[@id='dateBirth']";
 	public static final String YEAROFPRACTICE_TEXTFIELD_XPATH = "//input[@id='yearsPractice']";
 	public static final String EMAIL_TEXTFIELD_XPATH = "//input[@id='email']";
 	public static final String SPECIALITY_DROPDOWNLIST_XPATH = "//*[@id='speciality']";
-	public static final String COLLEGE_TEXTFIELD_XPATH = "//input[@id='email']";
+	public static final String COLLEGE_TEXTFIELD_XPATH = "//input[@id='college']";
 	public static final String DEGREE_TEXTFIELD_XPATH = "//input[@id='degree']";
-	public static final String PASSINGYEAR_TEXTFIELD_XPATH = "//input[@id='email']";
+	public static final String PASSINGYEAR_TEXTFIELD_XPATH = "//input[@id='passingYears']";
 	public static final String ADD_SEPCIALITY_BUTTON_XPATH = "//button[@id='addSpeciality3']";
 	public static final String LICENSESTATUS_DROPDOWNLIST_XPATH = "//*[@name='licenseStatus']";
 	public static final String BUSINESS_LICENSE_NUMBER_TEXTFIELD_XPATH = "//input[@id='businessLicenser']";

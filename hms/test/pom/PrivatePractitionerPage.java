@@ -1,18 +1,28 @@
 package pom;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import locators.Locators;
+import main.DBConnect;
 
 public class PrivatePractitionerPage {
 
 	WebDriver driver;
 	boolean flag = true;
+	boolean statefoundflag = true;
+	String statefound;
+	List<String> statelist_fromUI;
+	List<String> statelist_fromDB;
+	String querry1 = "SELECT * FROM state;", state_id = "state_id", state_name = "state_name";
 
 	@FindBy(xpath = Locators.TITLE_DROPDOWNLIST_XPATH)
 	WebElement title_dropdown;
@@ -46,6 +56,9 @@ public class PrivatePractitionerPage {
 
 	@FindBy(xpath = Locators.CITY_DROPDOWNLIST_XPATH)
 	WebElement city_dropdown;
+
+	@FindBy(xpath = Locators.PINCODE_DROPDOWNLIST_XPATH)
+	WebElement pincode_list;
 
 	@FindBy(xpath = Locators.PINCODE_TEXTFIELD_XPATH)
 	WebElement pincode_textfield;
@@ -209,15 +222,21 @@ public class PrivatePractitionerPage {
 			}
 
 			try {
-				if (!pincode_textfield.isDisplayed()) {
+				if (!pincode_list.isDisplayed()) {
 					flag = false;
-					System.out.println("pincode textfield not displayed");
+					System.out.println("pincode dropdown list not displayed");
 				}
 			} catch (NoSuchElementException e) {
 				// TODO Auto-generated catch block
-				System.out.println("pincode filed not displayed");
+				System.out.println("pincode dropdown list not displayed");
 			}
 
+			/*
+			 * try { if (!pincode_textfield.isDisplayed()) { flag = false;
+			 * System.out.println("pincode textfield not displayed"); } } catch
+			 * (NoSuchElementException e) { // TODO Auto-generated catch block
+			 * System.out.println("pincode filed not displayed"); }
+			 */
 			try {
 				if (!country_textfield.isDisplayed()) {
 					flag = false;
@@ -382,8 +401,53 @@ public class PrivatePractitionerPage {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("any one of page element is not visible");
+			e.printStackTrace();
 			return false;
 		}
+
+	}
+
+	public boolean verifyState() {
+		Select statelist = new Select(state_dropdown);
+		statelist_fromUI = new ArrayList<String>();
+		statelist_fromDB = new ArrayList<String>();
+		try {
+
+			// System.out.println(stlist.getOptions());
+			List<WebElement> allStatesValues = statelist.getOptions();
+			// getting UI state list and initializing it to object
+			for (WebElement webElement : allStatesValues) {
+				statelist_fromUI.add(webElement.getText());
+				// System.out.println(webElement.getText());
+			}
+			// getting db state list and initializing it to object
+			for (String dbdata : DBConnect.readEmail_of_forgorpasswords(querry1, state_name).forgot_password_email) {
+				statelist_fromDB.add(dbdata);
+			}
+
+			// Comparing
+
+			for (int i = 0; i < statelist_fromDB.size(); i++) {
+				for (int j = 0; j <= statelist_fromUI.size()-1; j++) {
+					if (statelist_fromDB.get(i).contains(statelist_fromUI.get(j))) {
+						System.out.println("this state found in list - " + statelist_fromUI.get(j));
+						statefound = statelist_fromUI.get(j);
+					}
+				}
+				if (!statelist_fromDB.get(i).contains(statefound)) {
+					statefoundflag = false;
+					System.out.println("this state is not in list - " + statelist_fromDB.get(i));
+
+				}
+			}
+
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return statefoundflag;
 
 	}
 

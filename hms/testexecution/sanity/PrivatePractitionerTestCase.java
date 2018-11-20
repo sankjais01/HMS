@@ -75,12 +75,23 @@ public class PrivatePractitionerTestCase {
 		practitionerpage = new PrivatePractitionerPage(driver);
 		// driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
 	}
+	/*
+	 * @Test(priority = 1) void test_visiblityof_privatepractitioner_components() {
+	 * System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); System.out.println("checking visiblity of all componets of  " +
+	 * this.getClass()); Assert.assertTrue(practitionerpage.visiblityOfComponents(),
+	 * "All component not dispalyed"); System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); }
+	 */
 
 	@Test(priority = 1)
-	void visiblityof_privatepractitioner_components() {
+	void test_verifyStateList() {
 		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("checking visiblity of all componets of  " + this.getClass());
-		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
+		System.out.println("checking state list of " + this.getClass());
+		System.out.println("----------------------------------------------------------------------------------");
+		Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with populated list");
 		System.out.println("----------------------------------------------------------------------------------");
 	}
 

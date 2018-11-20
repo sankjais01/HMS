@@ -64,7 +64,7 @@ public class DBConnect {
 		// createstatements = con.createStatement();
 	}
 
-	public static DBConnect readEmail_of_forgorpasswords() throws SQLException {
+	public static DBConnect readEmail_of_forgorpasswords(String querry,String coloumn) throws SQLException {
 		DBConnect db = new DBConnect();
 		db.con = db.getConnection();
 		db.forgot_password_email = new ArrayList<String>();
@@ -74,13 +74,13 @@ public class DBConnect {
 		}
 
 		try {
-			db.prepare_stmts = db.con.prepareStatement("select * from forgot_password_detail;");
+			db.prepare_stmts = db.con.prepareStatement(querry);
 			ResultSet rs = db.prepare_stmts.executeQuery();
 
 			while (rs.next()) {
 
 				// System.out.print(rs.getString("user_id"));
-				db.forgot_password_email.add(rs.getString("user_id"));
+				db.forgot_password_email.add(rs.getString(coloumn));
 				// System.out.println(" test success");
 			}
 		} catch (SQLException e) {
