@@ -65,7 +65,7 @@ public class ForgotPage {
 			if (driver.findElement(By.xpath(Locators.FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
 				System.out.println("Reset password link sent sucessfuly");
 				System.out.println("verifying in database, please wait...........");
-				for (String s : DBConnect.readEmail_of_forgorpasswords(querry,attribute).forgot_password_email) {
+				for (String s : DBConnect.readEmail_of_forgorpasswords(querry,attribute).db_rowdata) {
 					System.out.println("emails in db are as - " + s);
 					if (s.equalsIgnoreCase(email)) {
 						emailflag = true;
@@ -116,7 +116,7 @@ public class ForgotPage {
 				if (driver.findElement(By.xpath(Locators.FORGOT_VALID_RESET_EMAIL_MESSAGE_XPATH)).isDisplayed()) {
 					System.out.println("Reset password link sent sucessfuly");
 					System.out.println("verifying in database, please wait...........");
-					for (String s : DBConnect.readEmail_of_forgorpasswords(querry,attribute).forgot_password_email) {
+					for (String s : DBConnect.readEmail_of_forgorpasswords(querry,attribute).db_rowdata) {
 						if (s.equalsIgnoreCase(email)) {
 							System.out.println("Reset link found in DB");
 							return true;

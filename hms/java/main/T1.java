@@ -1,6 +1,9 @@
 package main;
 
+import org.testng.asserts.SoftAssert;
+
 public class T1 {
+	SoftAssert softassert = new SoftAssert();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -15,6 +18,7 @@ public class T1 {
 			}*/
 			System.out.println();
 			System.out.println("after Arithmetic Exception");
+			
 			
 			
 			try {

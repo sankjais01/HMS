@@ -1,15 +1,19 @@
 package pom;
 
+import static org.testng.Assert.assertTrue;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 import locators.Locators;
 import main.DBConnect;
@@ -18,11 +22,17 @@ public class PrivatePractitionerPage {
 
 	WebDriver driver;
 	boolean flag = true;
-	boolean statefoundflag = true;
-	String statefound;
+	boolean cityfoundflag, statefoundflag = true;
+	public SoftAssert softassert = new SoftAssert();
+
+	String statefound, cityfound;
 	List<String> statelist_fromUI;
 	List<String> statelist_fromDB;
+	List<String> stateID_fromDB;
+	List<String> cityList_fromDB;
+	List<String> cityList_fromUI;
 	String querry1 = "SELECT * FROM state;", state_id = "state_id", state_name = "state_name";
+	String querry2 = "SELECT * FROM city;", city_name = "city_name";
 
 	@FindBy(xpath = Locators.TITLE_DROPDOWNLIST_XPATH)
 	WebElement title_dropdown;
@@ -117,6 +127,7 @@ public class PrivatePractitionerPage {
 	public PrivatePractitionerPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+
 	}
 
 	public boolean visiblityOfComponents() {
@@ -407,7 +418,7 @@ public class PrivatePractitionerPage {
 
 	}
 
-	public boolean verifyState() {
+	public void verifyState() {
 		Select statelist = new Select(state_dropdown);
 		statelist_fromUI = new ArrayList<String>();
 		statelist_fromDB = new ArrayList<String>();
@@ -421,14 +432,14 @@ public class PrivatePractitionerPage {
 				// System.out.println(webElement.getText());
 			}
 			// getting db state list and initializing it to object
-			for (String dbdata : DBConnect.readEmail_of_forgorpasswords(querry1, state_name).forgot_password_email) {
+			for (String dbdata : DBConnect.readEmail_of_forgorpasswords(querry1, state_name).db_rowdata) {
 				statelist_fromDB.add(dbdata);
 			}
 
 			// Comparing
 
 			for (int i = 0; i < statelist_fromDB.size(); i++) {
-				for (int j = 0; j <= statelist_fromUI.size()-1; j++) {
+				for (int j = 0; j <= statelist_fromUI.size() - 1; j++) {
 					if (statelist_fromDB.get(i).contains(statelist_fromUI.get(j))) {
 						System.out.println("this state found in list - " + statelist_fromUI.get(j));
 						statefound = statelist_fromUI.get(j);
@@ -436,19 +447,106 @@ public class PrivatePractitionerPage {
 				}
 				if (!statelist_fromDB.get(i).contains(statefound)) {
 					statefoundflag = false;
-					System.out.println("this state is not in list - " + statelist_fromDB.get(i));
+					String message = "this state is not in list - " + statelist_fromDB.get(i);
+					softassert.assertTrue(statefoundflag, message);
+					// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
 
 				}
 			}
 
-		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return statefoundflag;
+		// return statefoundflag;
 
 	}
 
+	public void verifyCity() {
+
+		Select statelist = new Select(state_dropdown);
+		statelist_fromUI = new ArrayList<String>();
+		Select citylist;
+
+		try {
+
+			List<WebElement> allStatesValues = statelist.getOptions();
+			// getting UI state list and initializing it to object
+			for (WebElement webElement : allStatesValues) {
+				statelist_fromUI.add(webElement.getText());
+				// System.out.println(webElement.getText());
+			}
+
+			for (int i = 1; i < statelist_fromUI.size(); i++) {
+				state_dropdown.click();
+				String dynamicXpath = "//*[contains(text(),'" + statelist_fromUI.get(i) + "')]";
+				driver.findElement(By.xpath(dynamicXpath)).click();
+				Thread.sleep(500);
+				city_dropdown.click();
+				citylist = new Select(city_dropdown);
+				List<WebElement> allcitylist = citylist.getOptions();
+				cityList_fromDB = new ArrayList<String>();
+				cityList_fromUI = new ArrayList<String>();
+				querry2 = "SELECT * FROM city WHERE state_id= (SELECT state_id FROM state WHERE state_name ='"
+						+ statelist_fromUI.get(i) + "');";
+
+				// reading city from db initializing it to object
+				for (String city : DBConnect.readEmail_of_forgorpasswords(querry2, city_name).db_rowdata) {
+					cityList_fromDB.add(city);
+					// System.out.println("state - " + statelist_fromUI.get(i)+" : city/town -
+					// "+cityList_fromDB);
+				}
+
+				/*
+				 * System.out .println("from DB - state - " + statelist_fromUI.get(i) +
+				 * " : city/town - " + cityList_fromDB); System.out.println("from UI - state - "
+				 * + statelist_fromUI.get(i) + " : city/town - ");
+				 */
+				// reading city from ui initializing it to object
+
+				for (WebElement webElement : allcitylist) {
+					cityList_fromUI.add(webElement.getText());
+					// System.out.print(webElement.getText() + ", ");
+
+					// System.out.println("from UI - state - " + statelist_fromUI.get(i) + " :
+					// city/town - " + webElement.getText());
+
+				}
+
+				// comparing UI cities with DB cities
+				for (int k = 0; k < cityList_fromDB.size(); k++) {
+					for (int j = 1; j < cityList_fromUI.size() - 1; j++) {
+						if (cityList_fromDB.get(k).contains(cityList_fromUI.get(j))) {
+							System.out.println("from state - " + statelist_fromUI.get(i)
+									+ " - this city found in UI & DB - " + cityList_fromUI.get(j));
+							cityfound = cityList_fromUI.get(j);
+						}
+					}
+					
+					if (!cityList_fromDB.get(k).contains(cityfound)) {
+						cityfoundflag = false;
+						String message = "from state - " + statelist_fromUI.get(i)
+								+ "this city is not in UI city list but in DB - " + cityList_fromDB.get(k);
+						//softassert.assertEquals(cityList_fromDB.get(k), "cityfound", message);
+						softassert.assertTrue(cityfoundflag, message);
+						System.out.println("hello test");
+						// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
+
+					}
+				}
+
+			}
+
+			// reading state id for retrieving city list
+
+			/*
+			 * for (String stateid : DBConnect.readEmail_of_forgorpasswords(querry1,
+			 * state_id).forgot_password_email) { stateID_fromDB.add(stateid); }
+			 */
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

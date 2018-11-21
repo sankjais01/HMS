@@ -6,10 +6,10 @@
       <class name="sanity.PrivatePractitionerTestCase">
         <methods>
           <include name="navigatesTo_privatePractitioner"/>
+          <include name="test_verifyAllCityList"/>
           <include name="testdata"/>
           <include name="initBrowser"/>
           <include name="destroy"/>
-          <include name="visiblityof_privatepractitioner_components"/>
         </methods>
       </class> <!-- sanity.PrivatePractitionerTestCase -->
     </classes>

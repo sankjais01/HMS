@@ -23,7 +23,7 @@ public class DBConnect {
 	String driver_type = database_details[1][5];
 	Connection con = null;
 	PreparedStatement prepare_stmts = null;
-	public List<String> forgot_password_email;
+	public List<String> db_rowdata;
 
 	// "com.mysql.jdbc.Driver" depricated one
 
@@ -67,7 +67,7 @@ public class DBConnect {
 	public static DBConnect readEmail_of_forgorpasswords(String querry,String coloumn) throws SQLException {
 		DBConnect db = new DBConnect();
 		db.con = db.getConnection();
-		db.forgot_password_email = new ArrayList<String>();
+		db.db_rowdata = new ArrayList<String>();
 		if (db.con == null) {
 			System.out.println("fail to connected to database");
 			System.exit(1);
@@ -80,7 +80,7 @@ public class DBConnect {
 			while (rs.next()) {
 
 				// System.out.print(rs.getString("user_id"));
-				db.forgot_password_email.add(rs.getString(coloumn));
+				db.db_rowdata.add(rs.getString(coloumn));
 				// System.out.println(" test success");
 			}
 		} catch (SQLException e) {

@@ -2,34 +2,35 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="14013" started-at="2018-11-19T12:48:02Z" finished-at="2018-11-19T12:48:16Z">
+  <suite name="Default suite" duration-ms="180139" started-at="2018-11-21T10:20:40Z" finished-at="2018-11-21T10:23:40Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="14013" started-at="2018-11-19T12:48:02Z" finished-at="2018-11-19T12:48:16Z">
+    <test name="Default test" duration-ms="180139" started-at="2018-11-21T10:20:40Z" finished-at="2018-11-21T10:23:40Z">
       <class name="sanity.PrivatePractitionerTestCase">
-        <test-method status="PASS" signature="initBrowser()[pri:0, instance:sanity.PrivatePractitionerTestCase@130161f7]" name="initBrowser" is-config="true" duration-ms="8888" started-at="2018-11-19T18:18:02Z" finished-at="2018-11-19T18:18:11Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initBrowser -->
-        <test-method status="PASS" signature="testdata()[pri:0, instance:sanity.PrivatePractitionerTestCase@130161f7]" name="testdata" is-config="true" duration-ms="0" started-at="2018-11-19T18:18:02Z" finished-at="2018-11-19T18:18:02Z">
+        <test-method status="PASS" signature="testdata()[pri:0, instance:sanity.PrivatePractitionerTestCase@2c78d320]" name="testdata" is-config="true" duration-ms="16" started-at="2018-11-21T15:50:40Z" finished-at="2018-11-21T15:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testdata -->
-        <test-method status="PASS" signature="navigatesTo_privatePractitioner()[pri:0, instance:sanity.PrivatePractitionerTestCase@130161f7]" name="navigatesTo_privatePractitioner" is-config="true" duration-ms="4775" started-at="2018-11-19T18:18:11Z" finished-at="2018-11-19T18:18:15Z">
+        <test-method status="PASS" signature="initBrowser()[pri:0, instance:sanity.PrivatePractitionerTestCase@2c78d320]" name="initBrowser" is-config="true" duration-ms="8817" started-at="2018-11-21T15:50:40Z" finished-at="2018-11-21T15:50:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initBrowser -->
+        <test-method status="PASS" signature="navigatesTo_privatePractitioner()[pri:0, instance:sanity.PrivatePractitionerTestCase@2c78d320]" name="navigatesTo_privatePractitioner" is-config="true" duration-ms="4759" started-at="2018-11-21T15:50:49Z" finished-at="2018-11-21T15:50:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigatesTo_privatePractitioner -->
-        <test-method status="FAIL" signature="visiblityof_privatepractitioner_components()[pri:0, instance:sanity.PrivatePractitionerTestCase@130161f7]" name="visiblityof_privatepractitioner_components" duration-ms="347" started-at="2018-11-19T18:18:15Z" finished-at="2018-11-19T18:18:16Z">
+        <test-method status="FAIL" signature="test_verifyAllCityList()[pri:0, instance:sanity.PrivatePractitionerTestCase@2c78d320]" name="test_verifyAllCityList" duration-ms="166537" started-at="2018-11-21T15:50:54Z" finished-at="2018-11-21T15:53:40Z">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[All component not dispalyed expected [true] but found [false]]]>
+              <![CDATA[1234 expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: All component not dispalyed expected [true] but found [false]
+              <![CDATA[java.lang.AssertionError: 1234 expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:94)
 	at org.testng.Assert.failNotEquals(Assert.java:494)
 	at org.testng.Assert.assertTrue(Assert.java:42)
-	at sanity.PrivatePractitionerTestCase.visiblityof_privatepractitioner_components(PrivatePractitionerTestCase.java:83)
+	at pom.PrivatePractitionerPage.verifyCity(PrivatePractitionerPage.java:528)
+	at sanity.PrivatePractitionerTestCase.test_verifyAllCityList(PrivatePractitionerTestCase.java:103)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -59,8 +60,8 @@
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- visiblityof_privatepractitioner_components -->
-        <test-method status="PASS" signature="destroy()[pri:0, instance:sanity.PrivatePractitionerTestCase@130161f7]" name="destroy" is-config="true" duration-ms="2115" started-at="2018-11-19T18:18:16Z" finished-at="2018-11-19T18:18:18Z">
+        </test-method> <!-- test_verifyAllCityList -->
+        <test-method status="PASS" signature="destroy()[pri:0, instance:sanity.PrivatePractitionerTestCase@2c78d320]" name="destroy" is-config="true" duration-ms="2380" started-at="2018-11-21T15:53:40Z" finished-at="2018-11-21T15:53:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- destroy -->
