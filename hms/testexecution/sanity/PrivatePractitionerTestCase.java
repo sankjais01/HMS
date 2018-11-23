@@ -38,13 +38,11 @@ public class PrivatePractitionerTestCase {
 		// System.out.println("valid data cols " + cols);
 		// System.out.println("valid data rows" + rows);
 		validuserdata = new String[rows][cols];
-
 		for (int r = 1; r < rows; r++) {
 			for (int c = 0; c < cols; c++) {
 				validuserdata[r][c] = excelvalidusers.getCellDataAsString(r, c);
 			}
 		}
-
 	}
 
 	@BeforeTest
@@ -76,25 +74,28 @@ public class PrivatePractitionerTestCase {
 		// driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
 	}
 
-	/*@Test(priority = 1)
-	void test_visiblityof_privatepractitioner_components() {
-		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("checking visiblity of all componets of  " + this.getClass());
-		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
-		System.out.println("----------------------------------------------------------------------------------");
-	}
-*/
-	/*@Test(priority = 1)
-	void test_verifyStateList() {
-		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("checking state list of " + this.getClass());
-		System.out.println("----------------------------------------------------------------------------------");
-		practitionerpage.verifyState();
-		// Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with
-		// populated list");
-		System.out.println("----------------------------------------------------------------------------------");
-	}
-*/
+	/*
+	 * @Test(priority = 1) void test_visiblityof_privatepractitioner_components() {
+	 * System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); System.out.println("checking visiblity of all componets of  " +
+	 * this.getClass()); Assert.assertTrue(practitionerpage.visiblityOfComponents(),
+	 * "All component not dispalyed"); System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); }
+	 */
+	/*
+	 * @Test(priority = 1) void test_verifyStateList() { System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); System.out.println("checking state list of " + this.getClass());
+	 * System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); practitionerpage.verifyState(); //
+	 * Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with
+	 * // populated list"); System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); }
+	 */
 	@Test(priority = 1)
 	void test_verifyAllCityList() {
 		System.out.println("----------------------------------------------------------------------------------");
@@ -103,7 +104,7 @@ public class PrivatePractitionerTestCase {
 		practitionerpage.verifyCity();
 		System.out.println("----------------------------------------------------------------------------------");
 	}
-	
+
 	@AfterSuite
 	void destroy() {
 		System.out.println("----------------------------------------------------------------------------------");
