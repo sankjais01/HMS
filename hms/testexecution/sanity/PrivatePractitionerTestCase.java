@@ -83,8 +83,8 @@ public class PrivatePractitionerTestCase {
 		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
 		System.out.println("----------------------------------------------------------------------------------");
 	}
-
-	@Test(priority = 2)
+*/
+	/*@Test(priority = 1)
 	void test_verifyStateList() {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("checking state list of " + this.getClass());
@@ -93,8 +93,8 @@ public class PrivatePractitionerTestCase {
 		// Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with
 		// populated list");
 		System.out.println("----------------------------------------------------------------------------------");
-	}*/
-
+	}
+*/
 	@Test(priority = 1)
 	void test_verifyAllCityList() {
 		System.out.println("----------------------------------------------------------------------------------");

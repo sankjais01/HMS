@@ -422,6 +422,7 @@ public class PrivatePractitionerPage {
 		Select statelist = new Select(state_dropdown);
 		statelist_fromUI = new ArrayList<String>();
 		statelist_fromDB = new ArrayList<String>();
+
 		try {
 
 			// System.out.println(stlist.getOptions());
@@ -447,6 +448,7 @@ public class PrivatePractitionerPage {
 				}
 				if (!statelist_fromDB.get(i).contains(statefound)) {
 					statefoundflag = false;
+					System.out.println("new test of softassert");
 					String message = "this state is not in list - " + statelist_fromDB.get(i);
 					softassert.assertTrue(statefoundflag, message);
 					// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
@@ -523,14 +525,14 @@ public class PrivatePractitionerPage {
 							cityfound = cityList_fromUI.get(j);
 						}
 					}
-					
+
 					if (!cityList_fromDB.get(k).contains(cityfound)) {
 						cityfoundflag = false;
 						String message = "from state - " + statelist_fromUI.get(i)
 								+ "this city is not in UI city list but in DB - " + cityList_fromDB.get(k);
-						//softassert.assertEquals(cityList_fromDB.get(k), "cityfound", message);
+						// softassert.assertEquals(cityList_fromDB.get(k), "cityfound", message);
 						softassert.assertTrue(cityfoundflag, message);
-						System.out.println("hello test");
+						// System.out.println("hello test");
 						// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
 
 					}
@@ -548,5 +550,9 @@ public class PrivatePractitionerPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void verify_Firstname() {
+
 	}
 }

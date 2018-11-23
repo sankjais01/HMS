@@ -5,8 +5,8 @@
     <classes>
       <class name="sanity.PrivatePractitionerTestCase">
         <methods>
+          <include name="test_verifyStateList"/>
           <include name="navigatesTo_privatePractitioner"/>
-          <include name="test_verifyAllCityList"/>
           <include name="testdata"/>
           <include name="initBrowser"/>
           <include name="destroy"/>

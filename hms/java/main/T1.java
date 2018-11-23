@@ -3,22 +3,27 @@ package main;
 import org.testng.asserts.SoftAssert;
 
 public class T1 {
-	SoftAssert softassert = new SoftAssert();
+	
+	/*T1(){
+		sassert = new SoftAssert();
+	}*/
+	public static SoftAssert sassert = new  SoftAssert();
 
-	public static void main(String[] args) {
+	public static void main(String args) {
 		// TODO Auto-generated method stub
 
 		try {
-			//try {
+			try {
 				int num = 1/0;
 				System.out.println(num);
-			/*} catch (Exception e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
+				
 				e.printStackTrace();
-			}*/
+			}
 			System.out.println();
 			System.out.println("after Arithmetic Exception");
-			
+			//ass.sassert.assertTrue(false,"working sassert true");
+sassert.assertEquals(false, true);
 			
 			
 			try {
