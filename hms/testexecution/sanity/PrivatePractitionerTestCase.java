@@ -24,7 +24,14 @@ public class PrivatePractitionerTestCase {
 	boolean flag = true;
 	ExcelUtils excelvalidusers = new ExcelUtils((System.getProperty("user.dir") + "/resources/utils/User.xlsx"),
 			"validusers");
-	String validuserdata[][];
+
+	ExcelUtils excelvalidprivatepractitioner_data = new ExcelUtils(
+			(System.getProperty("user.dir") + "/resources/utils/User.xlsx"), "validprivatepractitioner");
+
+	ExcelUtils excelinvalidprivatepractitioner_data = new ExcelUtils(
+			(System.getProperty("user.dir") + "/resources/utils/User.xlsx"), "invalidprivatepractitioner");
+
+	String validuserdata[][], validprivatepractitioner_data[][], invalidprivatepractitioner_data[][];
 	LoginPage loginpage;
 	PrivatePractitionerPage practitionerpage;
 	SoftAssert asert = new SoftAssert();
@@ -33,7 +40,9 @@ public class PrivatePractitionerTestCase {
 	@BeforeSuite
 	public void testdata() throws Exception {
 		// for getting valid data into string array
+
 		int cols = excelvalidusers.excel_get_cols();
+
 		int rows = excelvalidusers.excel_get_rows();
 		// System.out.println("valid data cols " + cols);
 		// System.out.println("valid data rows" + rows);
@@ -43,6 +52,47 @@ public class PrivatePractitionerTestCase {
 				validuserdata[r][c] = excelvalidusers.getCellDataAsString(r, c);
 			}
 		}
+
+		// for reading valid data of private practitioner
+
+		cols = excelvalidprivatepractitioner_data.excel_get_cols();
+		rows = excelvalidprivatepractitioner_data.excel_get_rows();
+		// System.out.println("valid excelvalidprivatepractitioner_data cols " + cols);
+		// System.out.println("valid excelvalidprivatepractitioner_data rows " + rows);
+		validprivatepractitioner_data = new String[rows][cols];
+		for (int r = 1; r < rows; r++) {
+			// System.out.println("----------------------------------------------------------------------------------");
+
+			for (int c = 0; c < cols; c++) {
+				validprivatepractitioner_data[r][c] = excelvalidprivatepractitioner_data.getCellDataAsString(r, c);
+				// System.out.print(" " + validprivatepractitioner_data[r][c]);
+			}
+			// System.out.println();
+			// System.out.println("----------------------------------------------------------------------------------");
+
+		}
+
+		// for reading Invalid data of private practitioner
+
+		cols = excelinvalidprivatepractitioner_data.excel_get_cols();
+		rows = excelinvalidprivatepractitioner_data.excel_get_rows();
+		// System.out.println("invalid excelvalidprivatepractitioner_data cols " +
+		// cols);
+		// System.out.println("invalid excelvalidprivatepractitioner_data rows " +
+		// rows);
+		invalidprivatepractitioner_data = new String[rows][cols];
+		for (int r = 1; r < rows; r++) {
+			// System.out.println("----------------------------------------------------------------------------------");
+
+			for (int c = 0; c < cols; c++) {
+				invalidprivatepractitioner_data[r][c] = excelinvalidprivatepractitioner_data.getCellDataAsString(r, c);
+				// System.out.print(" " + invalidprivatepractitioner_data[r][c]);
+			}
+			System.out.println();
+			// System.out.println("----------------------------------------------------------------------------------");
+
+		}
+
 	}
 
 	@BeforeTest
@@ -74,29 +124,26 @@ public class PrivatePractitionerTestCase {
 		// driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/div/div[2]"));
 	}
 
-	/*
-	 * @Test(priority = 1) void test_visiblityof_privatepractitioner_components() {
-	 * System.out.println(
-	 * "----------------------------------------------------------------------------------"
-	 * ); System.out.println("checking visiblity of all componets of  " +
-	 * this.getClass()); Assert.assertTrue(practitionerpage.visiblityOfComponents(),
-	 * "All component not dispalyed"); System.out.println(
-	 * "----------------------------------------------------------------------------------"
-	 * ); }
-	 */
-	/*
-	 * @Test(priority = 1) void test_verifyStateList() { System.out.println(
-	 * "----------------------------------------------------------------------------------"
-	 * ); System.out.println("checking state list of " + this.getClass());
-	 * System.out.println(
-	 * "----------------------------------------------------------------------------------"
-	 * ); practitionerpage.verifyState(); //
-	 * Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with
-	 * // populated list"); System.out.println(
-	 * "----------------------------------------------------------------------------------"
-	 * ); }
-	 */
 	@Test(priority = 1)
+	void test_visiblityof_privatepractitioner_components() {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("checking visiblity of all componets of  " + this.getClass());
+		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
+		System.out.println("----------------------------------------------------------------------------------");
+	}
+
+	@Test(priority = 2)
+	void test_verifyStateList() {
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("checking state list of " + this.getClass());
+		System.out.println("----------------------------------------------------------------------------------");
+		practitionerpage.verifyState(); //
+		//Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with populated list");
+		practitionerpage.verifyState();
+		System.out.println("----------------------------------------------------------------------------------");
+	}
+
+	@Test(priority = 3)
 	void test_verifyAllCityList() {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("checking city list for all states of " + this.getClass());
