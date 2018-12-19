@@ -455,7 +455,6 @@ public class PrivatePractitionerPage {
 					String message = "this state is not in list - " + statelist_fromDB.get(i);
 					softassert.assertTrue(statefoundflag, message);
 					// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
-
 				}
 			}
 
@@ -577,7 +576,6 @@ public class PrivatePractitionerPage {
 				System.out.println(founddata + "  option found in list :");
 							}
 		}
-
 	}
 
 	public void verify_Firstname() {
