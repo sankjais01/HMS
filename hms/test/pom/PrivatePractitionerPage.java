@@ -4,6 +4,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,6 +15,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import locators.Locators;
 import main.DBConnect;
@@ -550,6 +553,31 @@ public class PrivatePractitionerPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	// for all components over form-
+	public void verify_Title_list() {
+		Select title_list = new Select(title_dropdown);
+		List<WebElement> title_list_options = title_list.getOptions();
+		List<String> default_options = new ArrayList<>(Arrays.asList("Select", "Mr:", "Mrs:", "Ms:"));
+		String founddata = null;
+
+		for (int i = 0; i < default_options.size(); i++) {
+			for (WebElement webElement : title_list_options) {
+				if (default_options.get(i).equalsIgnoreCase(webElement.getText())) {
+					founddata = default_options.get(i);
+				}
+			}
+
+			if (!default_options.get(i).contains(founddata)) {
+				//softassert.fail(default_options.get(i) + " option not found in list");
+				softassert.assertTrue(false,default_options.get(i) + " option not found in list");
+				softassert.assertAll();
+			} else {
+				System.out.println(founddata + "  option found in list :");
+							}
+		}
+
 	}
 
 	public void verify_Firstname() {

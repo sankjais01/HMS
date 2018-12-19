@@ -132,23 +132,35 @@ public class PrivatePractitionerTestCase {
 		System.out.println("----------------------------------------------------------------------------------");
 	}
 
-	@Test(priority = 2)
-	void test_verifyStateList() {
-		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("checking state list of " + this.getClass());
-		System.out.println("----------------------------------------------------------------------------------");
-		practitionerpage.verifyState(); //
-		//Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with populated list");
-		practitionerpage.verifyState();
-		System.out.println("----------------------------------------------------------------------------------");
-	}
+	/*
+	 * @Test(priority = 2) void test_verifyStateList() { System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); System.out.println("checking state list of " + this.getClass());
+	 * System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); practitionerpage.verifyState(); //
+	 * //Assert.assertTrue(practitionerpage.verifyState(),
+	 * "db list not matching with populated list"); practitionerpage.verifyState();
+	 * System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); }
+	 * 
+	 * @Test(priority = 3) void test_verifyAllCityList() { System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); System.out.println("checking city list for all states of " +
+	 * this.getClass()); System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); practitionerpage.verifyCity(); System.out.println(
+	 * "----------------------------------------------------------------------------------"
+	 * ); }
+	 */
 
-	@Test(priority = 3)
-	void test_verifyAllCityList() {
+	@Test(priority = 2)
+	void test_verifyTitle_list() {
 		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("checking city list for all states of " + this.getClass());
+		System.out.println("checking title list for " + this.getClass());
 		System.out.println("----------------------------------------------------------------------------------");
-		practitionerpage.verifyCity();
+		practitionerpage.verify_Title_list();
 		System.out.println("----------------------------------------------------------------------------------");
 	}
 

@@ -1,13 +1,20 @@
 package sanity;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.mysql.cj.util.TimeUtil;
 
 import locators.Locators;
 import main.BrowserFactory;
@@ -26,8 +33,14 @@ public class LoginTestCase {
 	SoftAssert asert = new SoftAssert();
 	long starttime, endtime;
 
+	
 	@BeforeTest
 	public void testdata() throws Exception {
+	//	WebDriverWait wait = new WebDriverWait(driver,5000);
+		FluentWait<WebDriver> 	wait = new FluentWait<WebDriver>(driver);
+		wait.ignoring(NoSuchElementException.class);
+	
+
 		// for getting valid data into string array
 		int cols = excelvalidusers.excel_get_cols();
 		int rows = excelvalidusers.excel_get_rows();
@@ -79,6 +92,7 @@ public class LoginTestCase {
 		Thread.sleep(3000);
 		System.out.println("----------------------------------------------------------------------------------");
 
+		
 	}
 
 	@Test(priority = 1)
