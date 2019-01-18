@@ -19,6 +19,7 @@ import com.mysql.cj.util.TimeUtil;
 import locators.Locators;
 import main.BrowserFactory;
 import pom.LoginPage;
+import screenshots.CaptureScreenshots;
 import utils.ExcelUtils;
 
 public class LoginTestCase {
@@ -33,13 +34,11 @@ public class LoginTestCase {
 	SoftAssert asert = new SoftAssert();
 	long starttime, endtime;
 
-	
 	@BeforeTest
 	public void testdata() throws Exception {
-	//	WebDriverWait wait = new WebDriverWait(driver,5000);
-		FluentWait<WebDriver> 	wait = new FluentWait<WebDriver>(driver);
+		// WebDriverWait wait = new WebDriverWait(driver,5000);
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
 		wait.ignoring(NoSuchElementException.class);
-	
 
 		// for getting valid data into string array
 		int cols = excelvalidusers.excel_get_cols();
@@ -92,14 +91,18 @@ public class LoginTestCase {
 		Thread.sleep(3000);
 		System.out.println("----------------------------------------------------------------------------------");
 
-		
 	}
 
 	@Test(priority = 1)
 	void test_VisiblityofAllComponets() {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("checking visiblity of all componets of " + this.getClass());
-		asert.assertTrue(loginpage.visiblityOfComponents(), "fail to load components");
+		boolean flag = loginpage.visiblityOfComponents();
+		if (flag == true) {
+			CaptureScreenshots.capture(driver, "test_VisiblityofAllComponets");
+		}
+		asert.assertTrue(flag, "fail to load components");
+		asert.assertAll();
 		System.out.println("----------------------------------------------------------------------------------");
 	}
 
@@ -107,10 +110,14 @@ public class LoginTestCase {
 	void test_validLogin() throws InterruptedException {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Testing valid login testcase");
-		Assert.assertTrue(loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]),
-				"User Failed to Login with valid credentials");
+		boolean flag = loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]);
+		if (flag == true) {
+			CaptureScreenshots.capture(driver, "test_validLogin");
+		}
+		Assert.assertTrue(flag, "User Failed to Login with valid credentials");
 		driver.findElement(By.xpath(Locators.PROFILE_DROPDOWNMENU_XPATH)).click();
 		driver.findElement(By.xpath(Locators.LOGOUT_BUTTON_XPATH)).click();
+		asert.assertAll();
 		System.out.println("----------------------------------------------------------------------------------");
 
 	}
@@ -124,10 +131,13 @@ public class LoginTestCase {
 			System.out.println("Invalid test scenario " + r + " with username-  " + invaliduserdata[r][0]
 					+ " password - " + invaliduserdata[r][1]);
 			Thread.sleep(2000);
-			asert.assertFalse(loginpage.invalidLogin(invaliduserdata[r][0], invaliduserdata[r][1]),
-					"User Login successful with invalid data credentials" + "username-  " + invaliduserdata[r][0]
-							+ " password - " + invaliduserdata[r][1]);
-
+			boolean flag = loginpage.invalidLogin(invaliduserdata[r][0], invaliduserdata[r][1]);
+			if (flag == false) {
+				CaptureScreenshots.capture(driver, "test_invalidLogin"+ Integer.toString(r));
+			}
+			asert.assertFalse(flag, "User Login successful with invalid data credentials" + "username-  "
+					+ invaliduserdata[r][0] + " password - " + invaliduserdata[r][1]);
+			asert.assertAll();
 		}
 		System.out.println("----------------------------------------------------------------------------------");
 	}

@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="sanity.PrivatePractitionerTestCase">
+      <class name="sanity.LoginTestCase">
         <methods>
-          <include name="test_verifyStateList"/>
-          <include name="navigatesTo_privatePractitioner"/>
           <include name="testdata"/>
-          <include name="initBrowser"/>
+          <include name="test_VisiblityofAllComponets"/>
+          <include name="test_invalidLogin"/>
           <include name="destroy"/>
+          <include name="test_validLogin"/>
+          <include name="initBrowser"/>
         </methods>
-      </class> <!-- sanity.PrivatePractitionerTestCase -->
+      </class> <!-- sanity.LoginTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
