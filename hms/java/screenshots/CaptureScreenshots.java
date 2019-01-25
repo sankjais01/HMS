@@ -20,7 +20,6 @@ public class CaptureScreenshots {
 			File source = ts.getScreenshotAs(OutputType.FILE);
 			Date date = new Date();
 			//System.out.println(dateFormat.format(date));
-
 			FileUtils.copyFile(source, new File(System.getProperty("user.dir") + "\\java\\screenshots\\"
 					+ dateFormat.format(date) + "\\" + screenshotname+"_"+timeformat.format(date)+ ".png"));
 			// FileUtils.copyDirectory(source, new File(

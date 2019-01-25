@@ -98,7 +98,7 @@ public class LoginTestCase {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("checking visiblity of all componets of " + this.getClass());
 		boolean flag = loginpage.visiblityOfComponents();
-		if (flag == true) {
+		if (flag == false) {
 			CaptureScreenshots.capture(driver, "test_VisiblityofAllComponets");
 		}
 		asert.assertTrue(flag, "fail to load components");
@@ -111,7 +111,7 @@ public class LoginTestCase {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Testing valid login testcase");
 		boolean flag = loginpage.validLogin(validuserdata[1][0], validuserdata[1][1]);
-		if (flag == true) {
+		if (flag == false) {
 			CaptureScreenshots.capture(driver, "test_validLogin");
 		}
 		Assert.assertTrue(flag, "User Failed to Login with valid credentials");
@@ -132,7 +132,7 @@ public class LoginTestCase {
 					+ " password - " + invaliduserdata[r][1]);
 			Thread.sleep(2000);
 			boolean flag = loginpage.invalidLogin(invaliduserdata[r][0], invaliduserdata[r][1]);
-			if (flag == false) {
+			if (flag == true) {
 				CaptureScreenshots.capture(driver, "test_invalidLogin"+ Integer.toString(r));
 			}
 			asert.assertFalse(flag, "User Login successful with invalid data credentials" + "username-  "
