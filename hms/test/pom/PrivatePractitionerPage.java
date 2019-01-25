@@ -451,9 +451,10 @@ public class PrivatePractitionerPage {
 				}
 				if (!statelist_fromDB.get(i).contains(statefound)) {
 					statefoundflag = false;
-					System.out.println("new test of softassert");
+					//System.out.println("new test of softassert");
 					String message = "this state is not in list - " + statelist_fromDB.get(i);
 					softassert.assertTrue(statefoundflag, message);
+					softassert.assertAll();
 					// System.out.println("this state is not in list - " + statelist_fromDB.get(i));
 				}
 			}

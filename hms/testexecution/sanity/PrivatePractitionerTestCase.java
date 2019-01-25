@@ -16,6 +16,7 @@ import locators.Locators;
 import main.BrowserFactory;
 import pom.LoginPage;
 import pom.PrivatePractitionerPage;
+import screenshots.CaptureScreenshots;
 import utils.ExcelUtils;
 
 public class PrivatePractitionerTestCase {
@@ -128,7 +129,12 @@ public class PrivatePractitionerTestCase {
 	void test_visiblityof_privatepractitioner_components() {
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("checking visiblity of all componets of  " + this.getClass());
-		Assert.assertTrue(practitionerpage.visiblityOfComponents(), "All component not dispalyed");
+		boolean flag = practitionerpage.visiblityOfComponents();
+		if (flag==false)
+		{
+			CaptureScreenshots.capture(driver, "test_visiblityof_privatepractitioner_components");
+		}
+		Assert.assertTrue(flag, "All component not dispalyed");
 		System.out.println("----------------------------------------------------------------------------------");
 	}
 
@@ -138,7 +144,8 @@ public class PrivatePractitionerTestCase {
 		System.out.println("checking state list of " + this.getClass());
 		System.out.println("----------------------------------------------------------------------------------");
 		practitionerpage.verifyState(); //
-		//Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with populated list");
+		// Assert.assertTrue(practitionerpage.verifyState(), "db list not matching with
+		// populated list");
 		practitionerpage.verifyState();
 		System.out.println("----------------------------------------------------------------------------------");
 	}
